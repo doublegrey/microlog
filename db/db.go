@@ -64,3 +64,19 @@ func Consume(topics []string, messages chan *kafka.Message, offset string) error
 		}
 	}
 }
+
+func GetTopics() ([]string, error) {
+	a, err := kafka.NewAdminClient(&kafka.ConfigMap{"bootstrap.servers": utils.Config.Kafka.Brokers})
+	if err != nil {
+		return []string{}, err
+	}
+	metadata, err := a.GetMetadata(nil, true, 6000)
+	if err != nil {
+		return []string{}, err
+	}
+	topics := []string{}
+	for topic := range metadata.Topics {
+		topics = append(topics, topic)
+	}
+	return topics, nil
+}

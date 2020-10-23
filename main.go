@@ -58,6 +58,7 @@ func main() {
 	} else {
 		http.HandleFunc("/", handler)
 	}
+
 	err = http.ListenAndServe(fmt.Sprintf("%s:%d", utils.Config.Host, utils.Config.Port), nil)
 	if err != nil {
 		log.Fatalf("Failed to start server: %v\n", err)
