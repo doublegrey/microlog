@@ -1,0 +1,18 @@
+host = "0.0.0.0"
+port = 8080
+auth = true
+token = "123456789"
+
+[kafka]
+brokers = ["localhost:9092"]
+topic = "microlog"
+allow_custom_topic = true
+custom_topic_prefix = "microlog"
+
+
+[ui]
+enabled = true
+host = "0.0.0.0"
+port = 9090
+username = "admin"
+password = "admin"
